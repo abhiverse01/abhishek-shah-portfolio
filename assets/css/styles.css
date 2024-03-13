@@ -484,3 +484,106 @@ img {
     width: 450px;
   }
 }
+
+
+.skills__icon {
+    width: 40px; /* Adjust the size as needed */
+    height: auto;
+    margin-bottom: 10px; /* Space below the logo */
+}
+
+
+
+.contact__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px; /* Adjust the space between the info and the image */
+}
+
+.contact__info, .contact__image {
+    flex: 1; /* This makes both the info and image take up equal space */
+}
+
+.contact__info {
+    margin-bottom: 20px; /* Adjust spacing below the text */
+}
+
+.contact__button {
+    margin-top: 20px; /* Adds space above the button */
+}
+
+
+
+.work__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust the space between cards */
+    justify-content: center; /* Center cards within the container */
+}
+
+
+
+.work__card {
+    width: 300px; /* Adjust based on your preference */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Simple box shadow for depth */
+    border-radius: 10px; /* Optional: rounded corners */
+    overflow: hidden; /* Keeps the image and content within the border-radius */
+    padding: 20px; /* Adds padding inside the card */
+    display: flex; /* Enables flexible layouts inside the card */
+    flex-direction: column; /* Stacks items vertically */
+    justify-content: space-between; /* Distributes space between items */
+}
+
+
+.work__img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.work__title {
+    font-size: 20px; /* Adjust based on your preference */
+    margin: 10px 0; /* Space between title and image/description */
+}
+
+.work__description {
+    font-size: 16px; /* Adjust based on your preference */
+    color: #666; /* Lighter text color for the description */
+    padding: 0 15px; /* Padding inside the card */
+}
+
+.work__link {
+    display: inline-block;
+    margin: 20px 15px 30px 15px; /* Adjust margins to fit */
+    text-decoration: none;
+    color: #007bff; /* Example link color */
+    font-weight: bold;
+}
+
+.work__more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px; /* Adjust based on your layout */
+}
+
+.work__profile-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000; /* Adjust based on your preference */
+    font-weight: bold;
+}
+
+.work__profile-logo {
+    width: 24px; /* Adjust based on your preference */
+    height: auto;
+    margin-right: 10px;
+}
