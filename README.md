@@ -1,4 +1,5 @@
-# abhishek-shah-portfolio ![preview img](/blacktshirtabhibg.png)
+# abhishek-shah-portfolio 
+![preview img](/blacktshirtabhibg.png)
 The project's template code has been adapted from Bedimcode. So, thanks to them. 
 Here's a link to their YouTube channel. Check It Out. [Bedimcode](https://www.youtube.com/@Bedimcode)
 ### Portfolio Website
