@@ -1,6 +1,6 @@
 # abhishek-shah-portfolio
-# The project base code has been taken from Bedimcode. So, thanks to them. 
-# Here's a link to their YouTube channel. Check It Out. [Bedimcode](https://www.youtube.com/@Bedimcode)
+The project's template code has been adapted from Bedimcode. So, thanks to them. 
+Here's a link to their YouTube channel. Check It Out. [Bedimcode](https://www.youtube.com/@Bedimcode)
 ### Portfolio Website
 
 - Responsive Personal Portfolio Website HTML CSS & JavaScript.
