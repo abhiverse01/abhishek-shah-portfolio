@@ -1,6 +1,13 @@
 /*===== GOOGLE FONTS =====*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
+/* Global box-sizing reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 /*===== VARIABLES CSS =====*/
 :root{
     --header-height: 3rem;
