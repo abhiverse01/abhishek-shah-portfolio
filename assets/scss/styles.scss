@@ -676,3 +676,16 @@ img{
         }
     }
 }
+
+/* Center-align contact info on mobile */
+@media screen and (max-width: 767px) {
+    .contact__info {
+        text-align: center;
+    }
+
+    .contact__button {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
