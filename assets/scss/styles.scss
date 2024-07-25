@@ -283,7 +283,7 @@ img{
         border-radius: 0.5rem;
         box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
         transition: background-color 0.3s ease;
-        
+
         &:hover {
             background-color: rgba(14, 36, 49, 0.05);
         }
@@ -305,39 +305,16 @@ img{
         height: 0.25rem;
         border-radius: 0.5rem;
         z-index: var(--z-back);
-        width: 0;
+        width: 0; /* Initial width set to 0 */
         transition: width 2s ease;
-    }
-    &__html {
-        width: 95%;
-    }
-    &__css {
-        width: 85%;
-    }
-    &__js {
-        width: 65%;
-    }
-    &__ux {
-        width: 45%;
     }
     &__img {
         border-radius: 0.5rem;
     }
 }
 
-/* Animation to fill progress bars on load */
-@keyframes fillBars {
-    from {
-        width: 0;
-    }
-    to {
-        width: var(--width);
-    }
-}
 
-.skills__bar {
-    animation: fillBars 2s forwards;
-}
+
 
 /* ===== WORK ===== */
 .work {
