@@ -66,3 +66,14 @@ document.addEventListener('DOMContentLoaded', () => {
         bar.style.width = width;
     });
 });
+
+
+/* JavaScript to toggle header background on scroll */
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.l-header');
+    if (window.scrollY > 50) {
+        header.classList.add('scroll-header');
+    } else {
+        header.classList.remove('scroll-header');
+    }
+});
