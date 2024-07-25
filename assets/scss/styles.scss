@@ -117,7 +117,10 @@ img{
     z-index: var(--z-fixed);
     background-color: #fff;
     box-shadow: 0 1px 4px rgba(146,161,176,.15);
+    transition: background-color 0.3s ease;
 }
+
+
 
 /*===== NAV =====*/
 .nav{
@@ -137,6 +140,8 @@ img{
             padding: 2rem;
             background-color: var(--second-color);
             transition: .5s;
+            padding: 4rem 2rem;
+            font-size: 1.2rem;
         }
     }
     &__item{
@@ -197,6 +202,7 @@ img{
     &__title{
         font-size: var(--big-font-size);
         margin-bottom: var(--mb-5);
+        animation: fadeIn 1.5s ease-in-out;
 
         &-color{
             color: var(--first-color);
@@ -210,9 +216,12 @@ img{
             margin-bottom: var(--mb-2);
             font-size: 1.5rem;
             color: var(--second-color);
+            
 
             &:hover{
                 color: var(--first-color);
+                transform: scale(1.1);
+                transition: color 0.3s ease, transform 0.3s ease;
             }
         }
     }
@@ -222,6 +231,7 @@ img{
         right: 0;
         bottom: 0;
         width: 260px;
+        animation: fadeIn 1.5s ease-in-out;
     }
     &__blob{
         fill: var(--first-color);
@@ -231,6 +241,18 @@ img{
         }
     }
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 /*BUTTONS*/
 .button{
@@ -252,6 +274,8 @@ img{
     &__container{
         row-gap: 2rem;
         text-align: center;
+        padding: 3rem 2rem;
+        text-align: left;
     }
     &__subtitle{
         margin-bottom: var(--mb-2);
@@ -265,6 +289,10 @@ img{
             border-radius: .5rem;
         }
     }
+    &__text{
+        line-height: 1.6; 
+    }
+
 }
 
 /* ===== SKILLS ===== */
@@ -314,6 +342,8 @@ img{
         z-index: var(--z-back);
         width: 0; /* Initial width set to 0 */
         transition: width 2s ease;
+        background: linear-gradient(to right, var(--first-color), var(--second-color));
+        transition: width 2s ease;
     }
     &__img {
         border-radius: 0.5rem;
@@ -340,6 +370,7 @@ img{
     }
   
     &__card {
+      margin-bottom: 2rem;
       background-color: #fff;
       border-radius: 0.5rem;
       box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
@@ -349,7 +380,7 @@ img{
   
       &:hover {
         transform: translateY(-10px);
-        box-shadow: 0px 10px 36px rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 10px 36px rgba(0, 0, 0, 0.2);
       }
   
       &__logo {
@@ -481,6 +512,7 @@ img{
     text-align: center;
     font-weight: var(--font-semi);
     padding: 2rem 0;
+    transition: background-color 0.3s ease;
 
     &__title{
         font-size: 2rem;
@@ -497,6 +529,12 @@ img{
     &__copy{
         font-size: var(--smaller-font-size);
     }
+}
+
+.footer__icon:hover {
+    color: var(--first-color);
+    transform: scale(1.2);
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 /* ===== MEDIA QUERIES=====*/
