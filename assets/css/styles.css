@@ -236,19 +236,64 @@ img {
 
 /* ===== ABOUT =====*/
 .about__container {
-  row-gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
   text-align: center;
+  padding: 2rem;
 }
-.about__subtitle {
-  margin-bottom: var(--mb-2);
-}
+
 .about__img {
   justify-self: center;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
+
 .about__img img {
   width: 200px;
   border-radius: 0.5rem;
 }
+
+.about__img:hover {
+  transform: scale(1.05);
+}
+
+.about__subtitle {
+  margin-bottom: var(--mb-2);
+  font-size: 1.5rem;
+  color: var(--first-color);
+}
+
+.about__text {
+  margin-bottom: var(--mb-2);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--second-color);
+}
+
+.about__text a {
+  color: var(--first-color);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.about__text a:hover {
+  color: darken(var(--first-color), 10%);
+}
+
+@media screen and (min-width: 768px) {
+  .about__container {
+      grid-template-columns: repeat(2, 1fr);
+      text-align: left;
+      gap: 4rem;
+  }
+
+  .about__img img {
+      width: 300px;
+  }
+}
+
 
 /* ===== SKILLS =====*/
 .skills__container {
