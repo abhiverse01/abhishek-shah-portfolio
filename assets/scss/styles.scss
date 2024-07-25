@@ -318,24 +318,104 @@ img{
     }
 }
 /* ===== WORK =====*/
-.work{
-    &__container{
-        row-gap: 2rem;
+.work {
+    &__intro {
+      text-align: center;
+      margin-bottom: $mb-4;
+      font-size: $normal-font-size;
+      color: $second-color;
     }
-    &__img{
-        box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15); 
-        border-radius: .5rem;
-        overflow: hidden;
-        
-        & img{
-            transition: 1s;
-
-            &:hover{
-                transform: scale(1.1);
-            }
+  
+    &__container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      row-gap: 2rem;
+    }
+  
+    &__card {
+      background-color: #fff;
+      border-radius: 0.5rem;
+      box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 10px 36px rgba(0, 0, 0, 0.15);
+      }
+  
+      &__logo {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 1rem auto;
+        border-radius: 50%;
+        background-color: $first-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        color: #fff;
+        font-weight: $font-semi;
+        transition: background-color 0.3s ease;
+      }
+  
+      &__logo:hover {
+        background-color: darken($first-color, 10%);
+      }
+  
+      &__title {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        color: $second-color;
+      }
+  
+      &__description {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        color: darken($second-color, 20%);
+      }
+  
+      &__link {
+        color: $first-color;
+        font-weight: $font-semi;
+        text-decoration: underline;
+        transition: color 0.3s ease;
+  
+        &:hover {
+          color: darken($first-color, 10%);
         }
+      }
     }
-}
+  
+    &__more {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+  
+      &__profile-link {
+        display: flex;
+        align-items: center;
+        color: $second-color;
+        font-weight: $font-semi;
+        text-decoration: none;
+        transition: color 0.3s ease;
+  
+        &:hover {
+          color: $first-color;
+        }
+  
+        &__logo {
+          width: 24px;
+          height: auto;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+  
 
 /* ===== CONTACT =====*/
 .contact{

@@ -351,21 +351,103 @@ img {
   border-radius: 0.5rem;
 }
 
-/* ===== WORK =====*/
+/* ===== WORK ===== */
+.work__intro {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 0.938rem;
+  color: hsl(224, 56%, 12%);
+}
+
 .work__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
   row-gap: 2rem;
 }
-.work__img {
-  box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
+
+.work__card {
+  background-color: #fff;
   border-radius: 0.5rem;
-  overflow: hidden;
+  box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.work__img img {
-  transition: 1s;
+
+.work__card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 10px 36px rgba(0, 0, 0, 0.15);
 }
-.work__img img:hover {
-  transform: scale(1.1);
+
+.work__logo {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem auto;
+  border-radius: 50%;
+  background-color: hsl(224, 89%, 60%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
 }
+
+.work__logo:hover {
+  background-color: hsl(224, 89%, 50%);
+}
+
+.work__title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: hsl(224, 56%, 12%);
+}
+
+.work__description {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: hsl(224, 56%, 20%);
+}
+
+.work__link {
+  color: hsl(224, 89%, 60%);
+  font-weight: 600;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.work__link:hover {
+  color: hsl(224, 89%, 50%);
+}
+
+.work__more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.work__profile-link {
+  display: flex;
+  align-items: center;
+  color: hsl(224, 56%, 12%);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.work__profile-link:hover {
+  color: hsl(224, 89%, 60%);
+}
+
+.work__profile-logo {
+  width: 24px;
+  height: auto;
+  margin-right: 0.5rem;
+}
+
 
 /* ===== CONTACT =====*/
 .contact__input {
