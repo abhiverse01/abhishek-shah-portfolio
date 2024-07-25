@@ -55,3 +55,15 @@ sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{});
 sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 0}); 
 sr.reveal('.home__social-icon',{ interval: 0}); 
 sr.reveal('.skills__data, .work__img, .contact__input',{interval: 0}); 
+
+/*===== SKILLS BAR ANIMATION =====*/
+document.addEventListener('DOMContentLoaded', () => {
+    const bars = document.querySelectorAll('.skills__bar');
+    bars.forEach(bar => {
+        const width = bar.getAttribute('style').split(': ')[1];
+        bar.style.width = '0';
+        setTimeout(() => {
+            bar.style.width = width;
+        }, 100);
+    });
+});
