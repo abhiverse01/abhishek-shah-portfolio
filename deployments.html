@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AbhiShek Shah | Live Deployments</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="deployments.css">
+</head>
+<body>
+    <canvas id="neural-canvas"></canvas>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="accent">&lt;</span>AbhiShek<span class="accent">/&gt;</span>
+            </a>
+
+            <div class="nav-controls">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle colour theme" aria-pressed="false">
+                    <span class="theme-toggle-track">
+                        <span class="theme-toggle-thumb">
+                            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                            </svg>
+                            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="5"/>
+                                <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                                <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                            </svg>
+                        </span>
+                    </span>
+                </button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+
+            <div class="nav-links" id="nav-links">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#experience" class="nav-link">Experience</a>
+                <a href="index.html#skills" class="nav-link">Skills</a>
+                <a href="index.html#projects" class="nav-link">Projects</a>
+                <a href="deployments.html" class="nav-link active">Deployments</a>
+                <a href="achievements.html" class="nav-link">Achievements</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+                <a href="https://abhiverse-tex.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">Resume</a>
+            </div>
+        </nav>
+    </header>
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
+    <main>
+        <!-- Hero Banner -->
+        <section class="deploy-hero">
+            <div class="deploy-hero-content">
+                <div class="hero-label reveal">
+                    <span>Live Deployments</span>
+                </div>
+                <h1 class="deploy-title reveal">
+                    Production<br>
+                    <span class="name-highlight">Deployments</span>
+                </h1>
+                <p class="deploy-subtitle reveal">
+                    Projects shipped, hosted, and alive on the web. Each one battle-tested and accessible right now.
+                </p>
+
+                <!-- Live counter bar -->
+                <div class="deploy-meta reveal">
+                    <div class="meta-item">
+                        <span class="meta-value" id="live-count">0</span>
+                        <span class="meta-label">Live Projects</span>
+                    </div>
+                    <div class="meta-divider"></div>
+                    <div class="meta-item">
+                        <span class="meta-value">100%</span>
+                        <span class="meta-label">Uptime Goal</span>
+                    </div>
+                    <div class="meta-divider"></div>
+                    <div class="meta-item">
+                        <span class="meta-value">∞</span>
+                        <span class="meta-label">Open Source</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating grid decoration -->
+            <div class="deploy-hero-bg" aria-hidden="true">
+                <div class="grid-dot" style="--r:1;--c:2;--d:0.2s"></div>
+                <div class="grid-dot" style="--r:1;--c:5;--d:0.4s"></div>
+                <div class="grid-dot" style="--r:2;--c:1;--d:0.6s"></div>
+                <div class="grid-dot" style="--r:2;--c:4;--d:0.1s"></div>
+                <div class="grid-dot" style="--r:3;--c:3;--d:0.5s"></div>
+                <div class="grid-dot" style="--r:3;--c:6;--d:0.3s"></div>
+                <div class="grid-dot" style="--r:4;--c:2;--d:0.7s"></div>
+                <div class="grid-dot" style="--r:4;--c:5;--d:0.2s"></div>
+            </div>
+        </section>
+
+        <!-- Filter Bar -->
+        <section class="deploy-filter-section">
+            <div class="deploy-filter-bar">
+                <button class="deploy-filter-btn active" data-filter="all">All</button>
+                <button class="deploy-filter-btn" data-filter="ai">AI / ML</button>
+                <button class="deploy-filter-btn" data-filter="tool">Dev Tools</button>
+                <button class="deploy-filter-btn" data-filter="research">Research</button>
+            </div>
+        </section>
+
+        <!-- Deployment Cards Grid -->
+        <section class="deploy-grid-section">
+            <div class="deploy-grid" id="deploy-grid">
+                <!-- Cards injected by JS -->
+            </div>
+
+            <!-- Empty state (hidden by default) -->
+            <div class="deploy-empty" id="deploy-empty" style="display:none">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <p>No deployments match this filter yet.</p>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="deploy-cta-section">
+            <div class="deploy-cta-card reveal">
+                <div class="cta-glow"></div>
+                <h2>Want to build something together?</h2>
+                <p>I'm open to freelance, research collaborations, and full-time roles.</p>
+                <div class="cta-buttons">
+                    <a href="index.html#contact" class="btn btn-primary">Get in Touch</a>
+                    <a href="https://github.com/abhiverse01" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                        </svg>
+                        GitHub Profile
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo"><span class="accent">&lt;</span>AbhiShek<span class="accent">/&gt;</span></div>
+            <div class="footer-social">
+                <a href="https://github.com/abhiverse01" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/abhiverse01" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="footer-copy">© 2025 AbhiShek Shah — Built with passion & caffeine.</p>
+        </div>
+    </footer>
+
+    <!-- Terminal trigger -->
+    <div class="terminal-trigger">
+        <button class="terminal-btn" id="terminal-toggle" aria-label="Open terminal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+            </svg>
+        </button>
+        <div class="terminal-modal" id="terminal-modal">
+            <div class="terminal-header">
+                <span class="terminal-dot" style="background:#ff5f56"></span>
+                <span class="terminal-dot" style="background:#ffbd2e"></span>
+                <span class="terminal-dot" style="background:#27c93f"></span>
+                <span class="terminal-title">abhiverse — deployments</span>
+            </div>
+            <div class="terminal-body" id="terminal-output">
+                <div class="terminal-line terminal-muted">AbhiShek Shah — Deployments Terminal v1.0</div>
+                <div class="terminal-line terminal-muted">Type <span class="terminal-info">'help'</span> for available commands.</div>
+            </div>
+            <div class="terminal-input-line">
+                <span class="terminal-prompt">$</span>
+                <input type="text" class="terminal-input" id="terminal-input" placeholder="type a command..." autocomplete="off" spellcheck="false">
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="deployments.js"></script>
+</body>
+</html>
