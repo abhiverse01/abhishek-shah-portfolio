@@ -1,14 +1,14 @@
 /* ========== CSS Variables ========== */
 :root {
-    --bg:           #08090d;
-    --bg-secondary: #0f1117;
-    --fg:           #e8eaed;
-    --muted:        #6b7280;
+    --bg:           #060711;
+    --bg-secondary: #0b0d1a;
+    --fg:           #eaedf5;
+    --muted:        #7a87a0;
     --accent:       #00d9b5;
-    --accent-dim:   rgba(0, 217, 181, 0.15);
-    --card:         #12141a;
-    --border:       #1f2937;
-    --glow:         rgba(0, 217, 181, 0.4);
+    --accent-dim:   rgba(0, 217, 181, 0.13);
+    --card:         #0e1020;
+    --border:       #1c2138;
+    --glow:         rgba(0, 217, 181, 0.45);
 
     --shadow-sm:    0 2px  8px rgba(0, 0, 0, 0.35);
     --shadow-md:    0 8px 24px rgba(0, 0, 0, 0.45);
@@ -105,6 +105,9 @@ body {
     color: var(--fg);
     overflow-x: hidden;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 ::selection {
