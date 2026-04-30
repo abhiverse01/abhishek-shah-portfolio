@@ -1,0 +1,577 @@
+/* ==========================================================================
+   ACHIEVEMENTS PAGE — SPECIFIC STYLES
+   Covers: stats bar, filter pill, cert grid, cert cards, light mode overrides.
+   All values use CSS variables so both themes work automatically.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. PAGE LAYOUT — section padding
+   !important is kept here intentionally: these rules must win over the
+   global .section rule without touching styles.css.
+   ========================================================================== */
+
+
+main .section {
+    padding: 0 2rem !important;
+}
+
+/* FIX 9: Use --header-h token defined in styles.css :root instead of
+   a magic 80px. When main.js changes the header height (e.g. via
+   JS-driven resize), updating --header-h is the only change needed. */
+main > .section:first-of-type {
+    padding-top: calc(var(--header-h) + 1.5rem) !important;
+    padding-bottom: 1rem !important;
+}
+
+.section-header {
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 600px) {
+    main > .section:first-of-type {
+        /* Extra buffer on small screens where the nav may wrap. */
+        padding-top: calc(var(--header-h) + 2rem) !important;
+    }
+}
+
+
+/* ==========================================================================
+   2. STATS BAR
+   ========================================================================== */
+
+.stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    padding: 0 2rem;
+}
+
+.stat-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.3));
+    transition:
+        transform        0.3s ease,
+        border-color     0.3s ease,
+        box-shadow       0.3s ease,
+        background-color 0.3s ease;
+}
+
+.stat-box::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), #00e8c8, #00ffcc);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    border-radius: 0 0 16px 16px;
+}
+
+.stat-box:hover::after {
+    transform: scaleX(1);
+}
+
+.stat-box:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow:
+        var(--shadow-md, 0 8px 24px rgba(0,0,0,0.4)),
+        0 0 20px var(--glow);
+}
+
+/* E7: Terminal-glow on the big stat numbers — crisp against dark bg,
+   carries the cyberpunk energy of the rest of the page. */
+.stat-number {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+    line-height: 1;
+    text-shadow: 0 0 22px rgba(0, 217, 181, 0.38);
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.stat-text {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+@media (max-width: 600px) {
+    .stats-bar     { gap: 1rem; }
+    .stat-box      { width: 100%; max-width: 300px; }
+}
+
+
+/* ==========================================================================
+   3. FILTER PILL
+   ========================================================================== */
+
+.filter-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    padding: 0 2rem;
+}
+
+.filter-container {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: var(--bg-secondary);
+    padding: 0.5rem;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.filter-btn {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter-btn:hover {
+    color: var(--fg);
+    background: var(--accent-dim);
+}
+
+/* Active: white text explicitly — correct on both dark and light card bg. */
+.filter-btn.active {
+    background: var(--accent);
+    color: #ffffff;
+    box-shadow: 0 0 15px var(--glow);
+}
+
+@media (max-width: 600px) {
+    .filter-container {
+        border-radius: 16px;
+        padding: 0.75rem;
+    }
+}
+
+
+/* ==========================================================================
+   4. CERTIFICATE GRID
+   ========================================================================== */
+
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+}
+
+@media (max-width: 600px) {
+    .cert-grid { grid-template-columns: 1fr; }
+}
+
+/* Cards injected by JS after IntersectionObserver fires — force visible. */
+.cert-card.reveal {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+
+/* ==========================================================================
+   5. CERTIFICATE CARD
+   ========================================================================== */
+
+/* FIX 10: Explicit fallback background before the color-mix() gradient
+   for browsers that don't support color-mix (Firefox < 113, Safari < 16.2).
+   Those browsers render the solid --card color; newer browsers get the gradient. */
+.cert-card {
+    background: var(--card);
+    background: linear-gradient(
+        145deg,
+        var(--card) 0%,
+        color-mix(in srgb, var(--bg-secondary) 80%, transparent) 100%
+    );
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.3));
+    transition:
+        transform    0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        border-color 0.3s ease,
+        box-shadow   0.3s ease,
+        background   0.3s ease;
+}
+
+/* E3: Animated ribbon shimmer — background-position slides every 3s,
+   creating a premium sweep effect that loops seamlessly. */
+.cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(
+        90deg,
+        var(--accent),
+        #00e8c8,
+        #00ffcc,
+        #00e8c8,
+        var(--accent)
+    );
+    background-size: 300% 100%;
+    border-radius: 16px 16px 0 0;
+    z-index: 2;
+    animation: ribbon-shimmer 4s linear infinite;
+}
+
+@keyframes ribbon-shimmer {
+    0%   { background-position: 0%   center; }
+    100% { background-position: 300% center; }
+}
+
+/* Star watermark */
+.cert-card::after {
+    content: '★';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2.5rem;
+    color: var(--accent);
+    opacity: 0.08;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: rotate(15deg);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* FIX 11: Use var(--accent) with an alpha-modified approach via the
+   glow token instead of hardcoded hex — adapts to theme changes.
+   The border fully uses var(--accent) since border-opacity isn't a
+   standalone property; we add a slight transparency via box-shadow instead. */
+.cert-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+    box-shadow:
+        var(--shadow-lg, 0 16px 48px rgba(0,0,0,0.4)),
+        0 0 30px var(--glow),
+        inset 0 0 0 1px rgba(0, 217, 181, 0.08);
+}
+
+.cert-card:hover::after {
+    opacity: 0.25;
+    transform: rotate(0deg) scale(1.1);
+}
+
+
+/* ==========================================================================
+   6. CARD INTERIOR ELEMENTS
+   ========================================================================== */
+
+.cert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    gap: 0.5rem;
+}
+
+.cert-issuer {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 0.25rem 0.75rem;
+    /* Gold — intentional non-theme color, same in both modes.
+       Alpha bg + border so it reads on dark card AND white card. */
+    color: #c89b2a;
+    background: rgba(200, 155, 42, 0.10);
+    border: 1px solid rgba(200, 155, 42, 0.25);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+}
+
+.cert-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.cert-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    color: var(--fg);
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.cert-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    align-self: flex-start;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.cert-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+    position: relative;
+    z-index: 1;
+    transition: border-color 0.3s ease;
+}
+
+.cert-link {
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    transition: color 0.3s ease, gap 0.3s ease, filter 0.3s ease;
+}
+
+.cert-link:hover {
+    gap: 0.75rem;
+    filter: brightness(1.15);
+}
+
+.cert-link svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.cert-link:hover svg {
+    transform: translateX(3px);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT MODE OVERRIDES
+   ══════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="light"] .stat-box {
+    background: var(--card);
+    border-color: var(--border);
+    box-shadow: var(--shadow-sm);
+}
+[data-theme="light"] .stat-box:hover {
+    box-shadow: var(--shadow-md), 0 0 20px var(--glow);
+    border-color: var(--accent);
+}
+[data-theme="light"] .stat-box::after {
+    background: linear-gradient(90deg, var(--accent), #00b89e, #00c4a0);
+}
+/* In light mode the glow would wash out on white — drop it to zero. */
+[data-theme="light"] .stat-number {
+    color: var(--accent);
+    text-shadow: none;
+}
+[data-theme="light"] .stat-text { color: var(--muted); }
+
+[data-theme="light"] .filter-container {
+    background: var(--bg-secondary);
+    border-color: var(--border);
+}
+[data-theme="light"] .filter-btn { color: var(--muted); }
+[data-theme="light"] .filter-btn:hover {
+    color: var(--fg);
+    background: var(--accent-dim);
+}
+[data-theme="light"] .filter-btn.active {
+    background: var(--accent);
+    color: #ffffff;
+    box-shadow: 0 0 15px var(--glow);
+}
+
+[data-theme="light"] .cert-card {
+    background: var(--card);
+    background: linear-gradient(
+        145deg,
+        var(--card) 0%,
+        #f6f8fc 100%
+    );
+    border-color: var(--border);
+    box-shadow: var(--shadow-sm);
+}
+[data-theme="light"] .cert-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg), 0 0 30px var(--glow), inset 0 0 0 1px rgba(0, 158, 140, 0.08);
+}
+[data-theme="light"] .cert-card::before {
+    background: linear-gradient(
+        90deg,
+        var(--accent),
+        #00b89e,
+        #00c4a0,
+        #00b89e,
+        var(--accent)
+    );
+    background-size: 300% 100%;
+    /* Reuse the same keyframe — no duplication needed. */
+}
+[data-theme="light"] .cert-card::after { opacity: 0.06; }
+[data-theme="light"] .cert-card:hover::after { opacity: 0.18; }
+
+/* Darker gold for WCAG AA contrast on white card */
+[data-theme="light"] .cert-issuer {
+    color: #9a7510;
+    background: rgba(154, 117, 16, 0.10);
+    border-color: rgba(154, 117, 16, 0.25);
+}
+
+[data-theme="light"] .cert-date,
+[data-theme="light"] .cert-id {
+    background: var(--bg-secondary);
+    border-color: var(--border);
+    color: var(--muted);
+}
+
+[data-theme="light"] .cert-title   { color: var(--fg);     }
+[data-theme="light"] .cert-footer  { border-top-color: var(--border); }
+[data-theme="light"] .cert-link    { color: var(--accent); }
+
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .stat-box,
+    .cert-card,
+    .filter-btn,
+    .cert-link,
+    .cert-link svg,
+    .stat-box::after,
+    .cert-card::after {
+        transition-duration: 0.01ms !important;
+    }
+
+    /* Stop the ribbon shimmer and ribbon-slide */
+    .cert-card::before {
+        animation: none;
+    }
+
+    .cert-card {
+        animation: none;
+    }
+
+    .cert-card:hover,
+    .stat-box:hover {
+        transform: none;
+    }
+}
+
+
+/* ==========================================================================
+   ENHANCEMENT: Stagger cert-card entrance with CSS animation
+   Cards are injected with 'visible' already set, so we use animation
+   (not transition) to get the entrance effect — animation fires on insert.
+   ========================================================================== */
+
+@keyframes cardFadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.cert-card {
+    animation: cardFadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Stagger delay for grid positions */
+.cert-card:nth-child(3n+1) { animation-delay: 0.04s; }
+.cert-card:nth-child(3n+2) { animation-delay: 0.10s; }
+.cert-card:nth-child(3n+3) { animation-delay: 0.16s; }
+
+/* Base entering state — only applies before visible class is set */
+.cert-card.reveal:not(.visible) {
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+/* ==========================================================================
+   ENHANCEMENT: Filter pill active glow
+   ========================================================================== */
+.filter-btn.active {
+    box-shadow: 0 0 0 1px var(--accent), 0 0 12px rgba(0, 217, 181, 0.20);
+}
+
+.filter-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   ENHANCEMENT: Stats bar lift on hover
+   ========================================================================== */
+.stats-bar {
+    padding: 1.5rem 2rem;
+    gap: 2rem;
+}
+
+.stat-box {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 217, 181, 0.12);
+}
+
+/* ==========================================================================
+   ENHANCEMENT: Cert grid gap breathing room
+   ========================================================================== */
+.cert-grid {
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+}
