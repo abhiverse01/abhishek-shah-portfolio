@@ -206,7 +206,8 @@ body {
 }
 
 /* Push theme toggle to right (desktop) */
-.nav-links .theme-toggle {
+/* Create right-side group */
+.nav-links .btn-small {
     margin-left: auto;
 }
 
