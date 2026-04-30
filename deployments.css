@@ -644,3 +644,33 @@ main .section {
     .deploy-card:hover { transform: none; }
     .deploy-card:hover .deploy-logo { transform: none; }
 }
+
+
+/* ==========================================================================
+   9. REVEAL SAFETY NET
+   The .reveal class starts at opacity:0 and relies on IntersectionObserver
+   (main.js) to add .visible. On the deployments page the cards are static
+   HTML, not JS-injected, so we also force them visible once the page has
+   finished loading to guarantee nothing stays invisible.
+   ========================================================================== */
+
+/* Cards that the observer has already seen get this class from main.js */
+.deploy-card.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Fallback: if JS hasn't fired after 800ms the animation is likely blocked;
+   show everything immediately via a short CSS animation-delay trick. */
+@keyframes force-show {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.deploy-hero-content.reveal,
+.deploy-filters.reveal,
+.deploy-card.reveal,
+.deploy-cta.reveal,
+.deploy-stats.reveal {
+    animation: force-show 0.6s ease forwards;
+    animation-delay: 0.3s;   /* small delay so the normal observer can win first */
+}
