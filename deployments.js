@@ -3,6 +3,28 @@
 (function () {
     'use strict';
 
+    // ── Trigger reveal for static cards ──────────────────────────────────
+    // main.js defines initRevealObserver() globally; call it so .reveal
+    // elements on this page get the IntersectionObserver attached.
+    // If main.js hasn't run yet, wait for DOMContentLoaded.
+    function bootstrapReveal() {
+        if (typeof initRevealObserver === 'function') {
+            initRevealObserver();
+        } else {
+            // Fallback: force-show all .reveal elements immediately
+            document.querySelectorAll('.reveal').forEach(el => {
+                el.classList.add('visible');
+            });
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bootstrapReveal);
+    } else {
+        // DOM already ready (script is deferred/at bottom)
+        setTimeout(bootstrapReveal, 0);
+    }
+
     // ── Filter ────────────────────────────────────────────────────────────
 
     const filterBtns = document.querySelectorAll('.deploy-filter');
