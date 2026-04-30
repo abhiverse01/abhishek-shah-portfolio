@@ -205,6 +205,11 @@ body {
     gap: 2rem;
 }
 
+/* Push theme toggle to right (desktop) */
+.nav-links .theme-toggle {
+    margin-left: auto;
+}
+
 .nav-link {
     position: relative;
     color: var(--muted);
@@ -230,6 +235,7 @@ body {
 
 .nav-link:hover::after,
 .nav-link.active::after { width: 100%; }
+
 
 
 /* ==========================================================================
@@ -330,6 +336,10 @@ input:focus-visible {
         z-index: 95;
     }
     .nav-links.open { right: 0; }
+    .nav-links .theme-toggle {
+    margin-left: 0;
+    margin-top: 1rem;
+}
 }
 
 /* FIX: on desktop, hide mobile-menu-btn, show theme toggle normally */
