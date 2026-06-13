@@ -1,24 +1,36 @@
 /* ========== CSS Variables ========== */
 :root {
-    --bg:           #060711;
-    --bg-secondary: #0b0d1a;
-    --fg:           #eaedf5;
-    --muted:        #7a87a0;
+    --bg:           #05070f;
+    --bg-secondary: #090c18;
+    --fg:           #e8ecf4;
+    --muted:        #6b7a96;
     --accent:       #00d9b5;
-    --accent-dim:   rgba(0, 217, 181, 0.13);
-    --card:         #0e1020;
-    --border:       #1c2138;
-    --glow:         rgba(0, 217, 181, 0.45);
+    --accent-2:     #7c6fff;   /* purple accent for variety */
+    --accent-gold:  #f0b429;   /* gold for credentials/achievements */
+    --accent-dim:   rgba(0, 217, 181, 0.12);
+    --accent-dim-2: rgba(124, 111, 255, 0.12);
+    --card:         #0c0f1e;
+    --card-hover:   #0f1228;
+    --border:       #1a2040;
+    --border-subtle: #131628;
+    --glow:         rgba(0, 217, 181, 0.4);
+    --glow-soft:    rgba(0, 217, 181, 0.15);
 
-    --shadow-sm:    0 2px  8px rgba(0, 0, 0, 0.35);
-    --shadow-md:    0 8px 24px rgba(0, 0, 0, 0.45);
-    --shadow-lg:    0 16px 48px rgba(0, 0, 0, 0.55);
-    --shadow-glow:  0 10px 30px var(--glow);
+    --shadow-sm:    0 2px  8px rgba(0, 0, 0, 0.4);
+    --shadow-md:    0 8px 24px rgba(0, 0, 0, 0.5);
+    --shadow-lg:    0 20px 60px rgba(0, 0, 0, 0.6);
+    --shadow-glow:  0 0 0 1px rgba(0,217,181,0.15), 0 10px 40px rgba(0, 217, 181, 0.2);
+    --shadow-card:  0 1px 0 rgba(255,255,255,0.04) inset, 0 8px 32px rgba(0,0,0,0.45);
 
     --canvas-color: rgba(0, 217, 181, 0.55);
     --theme-transition: 0.3s ease;
 
-    /* FIX: header height token used by achievements.css */
+    /* Easing tokens */
+    --ease-out-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-smooth:     cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* header height token */
     --header-h: 72px;
 
     color-scheme: dark;
