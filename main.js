@@ -44,7 +44,7 @@ const projectsData = [
         tags: ['LLM', 'Llama-2', 'React'],
         logo: 'CB',
         github: 'https://github.com/abhiverse01/project-codebeing',
-        live: 'https://projectcodebeing.vercel.app'
+        live: 'https://codebeing.vercel.app'
     },
     {
         title: 'The Coder\'s Handbook',
