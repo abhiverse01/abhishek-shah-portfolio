@@ -21,6 +21,15 @@ const skillsData = [
 
 const projectsData = [
     {
+        title: 'ThesisForge',
+        desc: 'Browser-based LaTeX thesis generator. Choose a template, fill a guided wizard, and export a ready-to-compile .zip — zero LaTeX knowledge required.',
+        tags: ['LaTeX', 'Next.js', 'Academic'],
+        logo: 'TF',
+        github: null,
+        live: 'https://thesisforge-web.vercel.app',
+        status: 'Production'
+    },
+    {
         title: 'ActFormers Research',
         desc: 'Researching modifications to transformer architecture to predict actions rather than just tokens. Pioneering new approaches in action prediction.',
         tags: ['Transformers', 'Research', 'AI'],
@@ -396,7 +405,45 @@ document.addEventListener('DOMContentLoaded', () => {
     typeEffect();
     initRevealObserver();
     initCounterObserver();
+    initScrollTopButton();
+    initCardGlow();
 });
+
+// ========== Scroll-to-Top Button ==========
+function initScrollTopButton() {
+    const btn = document.createElement('button');
+    btn.className = 'scroll-top-btn';
+    btn.setAttribute('aria-label', 'Scroll to top');
+    btn.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="19" x2="12" y2="5"/>
+            <polyline points="5 12 12 5 19 12"/>
+        </svg>`;
+    document.body.appendChild(btn);
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    });
+
+    window.addEventListener('scroll', () => {
+        btn.classList.toggle('visible', window.scrollY > 480);
+    }, { passive: true });
+}
+
+// ========== Cursor-aware Card Glow ==========
+function initCardGlow() {
+    const selector = '.project-card, .skill-card, .deploy-card, .cert-card';
+
+    document.addEventListener('mousemove', (e) => {
+        const target = e.target.closest(selector);
+        if (!target) return;
+        const rect = target.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        target.style.setProperty('--mx', `${x}%`);
+        target.style.setProperty('--my', `${y}%`);
+    }, { passive: true });
+}
 
 // ========== Canvas Setup ==========
 function initCanvas() {
@@ -592,17 +639,16 @@ function handleSmoothScroll(e) {
 
 // ========== Reveal Observer ==========
 function initRevealObserver() {
-    const revealElements = document.querySelectorAll('.reveal');
-    
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-scale');
+
     const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, index * 50);
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     revealElements.forEach(el => revealObserver.observe(el));
 }
@@ -629,21 +675,23 @@ function animateCounter(element, target) {
         element.textContent = target + '+';
         return;
     }
-    
-    let count = 0;
-    const increment = target / 50;
-    
-    const updateCounter = () => {
-        if (count < target) {
-            count += increment;
-            element.textContent = Math.ceil(count) + '+';
-            requestAnimationFrame(updateCounter);
+
+    const duration = 1400;
+    let start = null;
+
+    function step(timestamp) {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 4); // ease-out-quart
+        element.textContent = Math.floor(eased * target) + '+';
+        if (progress < 1) {
+            requestAnimationFrame(step);
         } else {
             element.textContent = target + '+';
         }
-    };
-    
-    updateCounter();
+    }
+
+    requestAnimationFrame(step);
 }
 
 // ========== Skills Rendering ==========
